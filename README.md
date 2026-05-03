@@ -25,6 +25,10 @@ alias ld='lazydocker'
 ~~~
 setopt auto_cd
 ~~~
+### ~directory_nameでディレクトリに移動できるようにする(cpなどコマンド内でも解決できる)
+~~~
+hash -d D=/Users/"$USER"/Downloads
+~~~
 ### ディレクトリ移動をコマンドのようにする
 ~~~
 # D と入力するだけでDownloadsフォルダに移動する
