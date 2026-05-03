@@ -2,9 +2,11 @@
 ## Install
 ~~~
 cd ~ && git clone git@github.com:Sato0123/Zshrc.git;
-mv ~/.zshrc ~/.zshrc_old ; cat <(cat Zshrc/README.md | grep -v ~~~ | tail -n +8) > ~/.zshrc
+mv ~/.zshrc ~/.zshrc_old ; cat <(cat Zshrc/README.md | grep -v ~~~ | tail -n +10) > ~/.zshrc
+rm -Rf Zshrc
 ~~~
 
+# 設定ファイルの解説
 ## **alias**
 ### git
 ~~~
