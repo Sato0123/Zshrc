@@ -1,5 +1,5 @@
 # Zshrc
-## Install
+## Install （~/.zshrcが上書きされるので注意)
 ~~~
 cd ~ && git clone https://github.com/Sato0123/Zshrc.git;
 mv ~/.zshrc ~/.zshrc_old ; cat <(cat Zshrc/README.md | tail -n +10 | grep -v ~~~ ) > ~/.zshrc;
