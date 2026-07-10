@@ -46,12 +46,42 @@ PROMPT="%d %%
 stty -ixon
 bindkey '^S' push-line
 ~~~
+
+### 現在のコマンドをクリップボードに追加
+~~~
+clip-buffer() {
+  echo -n "\$ $BUFFER" | pbcopy
+  BUFFER=""
+}
+
+zle -N clip-buffer
+bindkey '^G' clip-buffer
+~~~
+
 ### コマンドラインをvimで編集
 ~~~
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^V' edit-command-line
 ~~~
+
+### コマンドラインをnvimで編集
+~~~
+edit-command-line-extension(){
+  local tmp="$(mktemp -p /tmp -u).sh" # ランダムなファイルを生成 macじゃない場合の動作は未確認
+  touch "$tmp"
+  echo "$BUFFER" > "$tmp" # バッファをファイルに取り込む
+  nvim "$tmp"
+  BUFFER=$(cat "$tmp") # バッファに編集内容を入れる
+  CURSOR=$#BUFFER
+  rm $tmp # 一時ファイル削除
+  zle redisplay # 再描画(なくても動作するが念の為)
+}
+zle -N edit-command-line-extension
+bindkey '^V' edit-command-line-extension
+export VISUAL='nvim'
+~~~
+
 ### 前回コマンドの引数再利用
 ~~~
 bindkey '^[' insert-last-word
