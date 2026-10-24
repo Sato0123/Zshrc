@@ -19,3 +19,5 @@
 
 ### Requirements
 - tac
+- fzf
+- ffmpeg
