@@ -30,3 +30,8 @@ ffmpeg_out_gif_from_desktop_to_download(){
 git-top(){
   cd $(git rev-parse --show-toplevel)
 }
+
+git-worktree-cd () {
+	local TARGET_PATH=$(git worktree list | fzf --with-nth 3 | awk '{print $1}') 
+	cd "$TARGET_PATH"
+}
