@@ -1,5 +1,5 @@
 ## 長い文字列を折り畳まず切り捨てる。
-wide() {
+function wide() {
   tput rmam
   "$@"
   local exit_code=$?
@@ -9,7 +9,7 @@ wide() {
 alias wide='wide '
 
 ## !-N で実行できるリストを出す。
-relhist () {
+function relhist () {
     fc -l | tac | perl -lane 'print "!-", $.+1 ," @F[1..$#F]"' | tac
     echo "!! $history[$HISTCMD]"
 }
@@ -17,7 +17,7 @@ alias '?!'=relhist
 
 # 収録した動画をgifにする。(Mac)
 # $1 -> 生成ファイルの名前
-ffmpeg_out_gif_from_desktop_to_download(){
+function ffmpeg_out_gif_from_desktop_to_download(){
   local out_name=${1:+${1%.gif}.gif}
   out_name=${out_name:-output.gif}
   ffmpeg \
@@ -26,7 +26,8 @@ ffmpeg_out_gif_from_desktop_to_download(){
     "${HOME}/Downloads/${out_name}"
 }
 
-mkdir_and_cd () {
+function mkdir_and_cd () {
 	target=$1 
 	mkdir $target && cd $target
 }
+alias mkd=mkdir_and_cd
