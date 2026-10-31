@@ -25,3 +25,8 @@ ffmpeg_out_gif_from_desktop_to_download(){
     -vf "setpts=0.8*PTS,fps=10,scale=1500:-1:flags=lanczos" \
     "${HOME}/Downloads/${out_name}"
 }
+
+mkdir_and_cd () {
+	target=$1 
+	mkdir $target && cd $target
+}
