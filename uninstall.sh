@@ -7,7 +7,7 @@ set -euo pipefail
 
 DOTFILES_DIR=$(cd "$(dirname "$0")" && pwd)
 MARKER_CORE='Sato0123'
-ALL="zsh vim"
+ALL="zsh vim lazyvim"
 
 # MARKER で挟まれたブロック消し、末尾に追加
 delete_block() {
@@ -35,11 +35,20 @@ uninstall_vim() {
   echo "vim: update $HOME/.vimrc"
 }
 
+uninstall_lazyvim() {
+  delete_block "$HOME/.config/nvim/init.lua" '--' <<EOF
+vim.opt.rtp:prepend("${DOTFILES_DIR}/lazyvim")
+require("config.lazy")
+EOF
+  echo "lazyvim: update $HOME/.config/nvim/init.lua"
+}
+
 targets=${*:-$ALL}
 for t in $targets; do
   case $t in
   zsh) uninstall_zsh ;;
   vim) uninstall_vim ;;
+  lazyvim) uninstall_lazyvim ;;
   *)
     echo "unknown target: $t" >&2
     exit 1
