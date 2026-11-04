@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-MAKER='#### Sato0123/Zshrc ####'
+MAKER='#### Sato0123 ####'
 
 SCRIPT_DIR="${0:A:h}/src"
 
